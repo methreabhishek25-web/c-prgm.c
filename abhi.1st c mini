@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <math.h>
+
+void drawLine(int length) {
+    for (int i = 0; i < length; i++)
+        printf("*");
+    printf("\n");
+}
+
+void drawRectangle(int width, int height) {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
+                printf("*");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+}
+
+void drawTriangle(int height) {
+    for (int i = 1; i <= height; i++) {
+        for (int j = 1; j <= i; j++)
+            printf("* ");
+        printf("\n");
+    }
+}
+
+void drawCircle(int radius) {
+    int x, y;
+    for (y = radius; y >= -radius; y--) {
+        for (x = -radius; x <= radius; x++) {
+            if (x*x + y*y <= radius*radius)
+                printf("*");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice;
+
+    do {
+        printf("\n===== 2D Graphics Editor =====\n");
+        printf("1. Draw Line\n");
+        printf("2. Draw Rectangle\n");
+        printf("3. Draw Triangle\n");
+        printf("4. Draw Circle\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: {
+                int length;
+                printf("Enter line length: ");
+                scanf("%d", &length);
+                drawLine(length);
+                break;
+            }
+
+            case 2: {
+                int width, height;
+                printf("Enter width and height: ");
+                scanf("%d %d", &width, &height);
+                drawRectangle(width, height);
+                break;
+            }
+
+            case 3: {
+                int height;
+                printf("Enter triangle height: ");
+                scanf("%d", &height);
+                drawTriangle(height);
+                break;
+            }
+
+            case 4: {
+                int radius;
+                printf("Enter radius: ");
+                scanf("%d", &radius);
+                drawCircle(radius);
+                break;
+            }
+
+            case 5:
+                printf("Exiting...\n");
+                break;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
